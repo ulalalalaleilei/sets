@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+<head>
+<title>Sets And Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --coral: #ff6b6b;
+  --teal: #4ecdc4;
+  --orange: #ffa502;
+  --deep: #1a1a2e;
+  --navy: #16213e;
+  --card: rgba(255,255,255,0.07);
+  --cream: #FDFBF4;
+  --ink: #1a1230;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #0b1d3d;
+  background-image: url('pml.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  padding: 55px 20px 40px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--teal));
+  border-radius: 99px;
+  margin: 18px auto 0;
+}
+.header h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 54px;
+  color: white;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  letter-spacing: 1px;
+}
+.header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  margin-top: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   NAV BUTTONS — beautifully redesigned
+══════════════════════════════════════════ */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 24px 54px;
+}
+
+nav div {
+  padding: 0;
+  width: 200px;
+  height: 90px;
+  text-align: center;
+  border-radius: 22px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Layered shadow for depth */
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.25),
+    0 8px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+
+  transition:
+    transform 0.22s cubic-bezier(.34,1.56,.64,1),
+    box-shadow 0.22s ease;
+}
+
+/* Shine sweep overlay */
+nav div::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.22) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+/* Top highlight edge */
+nav div::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 22px 22px 0 0;
+}
+
+nav div:hover {
+  transform: translateY(-7px) scale(1.05);
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.2),
+    0 20px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+nav div:hover::before {
+  left: 130%;
+}
+
+nav div:active {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.3),
+    0 6px 16px rgba(0,0,0,0.3),
+    inset 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Staggered entrance animation */
+nav div { animation: navPop 0.4s cubic-bezier(.34,1.56,.64,1) both; }
+nav div:nth-child(1) { animation-delay: 0.05s; }
+nav div:nth-child(2) { animation-delay: 0.10s; }
+nav div:nth-child(3) { animation-delay: 0.15s; }
+nav div:nth-child(4) { animation-delay: 0.20s; }
+nav div:nth-child(5) { animation-delay: 0.25s; }
+nav div:nth-child(6) { animation-delay: 0.30s; }
+nav div:nth-child(7) { animation-delay: 0.35s; }
+nav div:nth-child(8) { animation-delay: 0.40s; }
+nav div:nth-child(9) { animation-delay: 0.45s; }
+
+@keyframes navPop {
+  from { opacity: 0; transform: translateY(22px) scale(0.88); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+nav div:nth-child(1) { background: linear-gradient(150deg,#ff8a80,#ff6b6b,#d32f2f); }
+nav div:nth-child(2) { background: linear-gradient(150deg,#80cbc4,#4ecdc4,#00897b); }
+nav div:nth-child(3) { background: linear-gradient(150deg,#ffd54f,#ffa502,#e65100); }
+nav div:nth-child(4) { background: linear-gradient(150deg,#ff8a65,#FF5722,#bf360c); }
+nav div:nth-child(5) { background: linear-gradient(150deg,#69f0ae,#2ed573,#00c853); }
+nav div:nth-child(6) { background: linear-gradient(150deg,#f48fb1,#e84393,#ad1457); }
+nav div:nth-child(7) { background: linear-gradient(150deg,#82b1ff,#1F51FF,#1565c0); }
+nav div:nth-child(8) { background: linear-gradient(150deg,#ccff90,#39FF14,#1b8c00); }
+nav div:nth-child(9) { background: linear-gradient(150deg,#ffe082,#f9ca24,#f0932b); }
+
+/* ── SECTIONS ── */
+section { display: none; padding: 24px 20px 60px; animation: fadeIn 0.35s ease; }
+.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+.pageTitle {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════════════
+   BACK BUTTON — beautifully redesigned
+══════════════════════════════════════════ */
+.back {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffca28, #ffa502, #e67e00);
+  color: white;
+  border: none;
+  padding: 11px 28px 11px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+
+  box-shadow:
+    0 2px 0 rgba(180,100,0,0.5),
+    0 6px 20px rgba(255,165,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+
+  transition:
+    transform 0.2s cubic-bezier(.34,1.56,.64,1),
+    box-shadow 0.2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.45s ease;
+}
+
+.back:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 2px 0 rgba(180,100,0,0.4),
+    0 12px 28px rgba(255,165,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.back:hover::before { left: 130%; }
+
+.back:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow:
+    0 1px 0 rgba(180,100,0,0.5),
+    0 3px 10px rgba(255,165,0,0.3),
+    inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* ── CONTENT CARD ── */
+.content {
+  color: var(--ink);
+  border-radius: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 55px;
+  min-height: 600px;
+  font-size: 17px;
+  line-height: 1.8;
+  overflow: auto;
+  background: var(--cream);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.content h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 36px;
+  color: #1a1230;
+  margin-bottom: 12px;
+}
+
+.content h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 26px;
+  color: #24185e;
+  border-bottom: 3px solid #4ecdc4;
+  padding-bottom: 8px;
+  margin-top: 44px;
+}
+
+.content h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 21px;
+  color: #24185e;
+  border-bottom: 2px dashed #ffa502;
+  padding-bottom: 6px;
+  margin-top: 30px;
+}
+
+.content p { margin: 12px 0; }
+
+.content ul {
+  margin-left: 24px;
+  margin-top: 10px;
+}
+.content ul li {
+  margin: 7px 0;
+  padding: 4px 0;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  margin: 18px auto;
+  display: block;
+  border: 3px solid #e2e8f0;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* ── TABLE ── */
+.survey-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.survey-table th, .survey-table td {
+  border: 1px solid #b2ebf2;
+  padding: 13px;
+  text-align: center;
+}
+.survey-table th {
+  background: linear-gradient(135deg,#ffa502,#ff6b6b);
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 0.5px;
+}
+.survey-table tr:nth-child(even) { background-color: #e0f7fa; }
+.survey-table tr:nth-child(odd) { background-color: #ffffff; }
+.survey-table .row-highlight {
+  font-weight: 800;
+  background: linear-gradient(90deg,#e0f2fe,#f0fdf4) !important;
+  color: #1a1230;
+}
+.survey-table tr:hover { background-color: #fff9c4 !important; transition: 0.2s; }
+
+/* ── FORMULA FLEX ── */
+.formula-flex {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.formula-flex > div {
+  flex: 1;
+  min-width: 290px;
+  background: linear-gradient(135deg,#f0f4ff,#fdfbf4);
+  border-radius: 14px;
+  padding: 24px 28px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+}
+.formula-flex > div h2 { margin-top: 0; }
+.formula-flex ul li {
+  background: white;
+  border-radius: 8px;
+  padding: 7px 12px;
+  margin: 7px 0;
+  border-left: 4px solid #4ecdc4;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  list-style: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+.formula-flex > div:nth-child(2) ul li { border-left-color: #ff6b6b; }
+
+/* ── MEMBERS ── */
+.members-container {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding: 20px;
+}
+.member-box {
+  width: 160px;
+  border-radius: 20px;
+  padding: 18px 12px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.member-box:hover { transform: translateY(-7px); box-shadow: 0 16px 36px rgba(0,0,0,0.4); }
+.member-box img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid rgba(255,255,255,0.5);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.member-box h3 {
+  margin: 6px 0 0;
+  font-size: 15px;
+  font-family: 'Fredoka One', cursive;
+  border: none;
+  color: white;
+  padding: 0;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+  background: linear-gradient(135deg,#e0f7fa,#fce4ec);
+  border-radius: 12px;
+  padding: 16px 22px;
+  margin: 16px 0;
+  border-left: 5px solid #4ecdc4;
+  font-weight: 700;
+}
+
+/* ── STATS CARDS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px 14px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-top: 4px solid #ff6b6b;
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-4px); }
+.stat-card:nth-child(2) { border-top-color: #4ecdc4; }
+.stat-card:nth-child(3) { border-top-color: #ffa502; }
+.stat-card:nth-child(4) { border-top-color: #7c3aed; }
+.stat-card .stat-number {
+  font-family: 'Fredoka One', cursive;
+  font-size: 38px;
+  color: #1a1230;
+  line-height: 1;
+}
+.stat-card .stat-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #5a5a7a;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── STEPS BOX ── */
+.steps-box { margin: 18px 0; }
+.step-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 14px 0;
+  padding: 14px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  border: 1.5px solid #e2e8f0;
+}
+.step-num {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ecdc4, #26a69a);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-content { font-size: 15.5px; font-weight: 600; padding-top: 4px; line-height: 1.6; }
+
+/* ── NOTE BOX ── */
+.note-box {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-radius: 14px;
+  padding: 16px 22px;
+  margin: 16px 0;
+  border-left: 5px solid #2ed573;
+  font-size: 15px;
+  font-weight: 600;
+}
+.note-box .note-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #00b04f;
+  margin-bottom: 6px;
+}
+</style>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll("section").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</head>
+<body>
+
+<header class="header">
+  <h1>Sets And Survey</h1>
+  <h3>Basic Understanding</h3>
+</header>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <nav>
+    <div onclick="showPage('intro')">📚 Introduction to Sets</div>
+    <div onclick="showPage('Formula')">🔢 Formula</div>
+    <div onclick="showPage('remote')">🙏 Acknowledgement</div>
+    <div onclick="showPage('protocols')">💛 Thanksgiving</div>
+    <div onclick="showPage('social')">📊 Data Analysis</div>
+    <div onclick="showPage('zoom')">🔍 Sources</div>
+    <div onclick="showPage('Sources')">📈 Graphical Representation</div>
+    <div onclick="showPage('Conclusion')">✅ Conclusion</div>
+    <div onclick="showPage('members')">👥 Members</div>
+  </nav>
+</section>
+
+<!-- INTRODUCTION -->
+<section id="intro">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Introduction</p>
+  <div class="content">
+    <h1>Sets</h1>
+    <p>A set is a well-defined collection of distinct objects. It is represented by a capital letter. The number of elements in a finite set is known as the cardinal number of a set.</p>
+
+    <h2>Commonly Used Sets</h2>
+    <ul>
+      <li><b>N</b> : Set of all natural numbers</li>
+      <li><b>Z</b> : Set of all integers</li>
+      <li><b>Q</b> : Set of all rational numbers</li>
+      <li><b>R</b> : Set of all real numbers</li>
+      <li><b>Z<sup>+</sup></b> : Set of all positive integers</li>
+    </ul>
+
+    <h2>Representation of Sets</h2>
+    <p>The elements in a set can be represented in Statement Form, Roster Form, or Set Builder Form.</p>
+
+    <h3>Statement Form</h3>
+    <p>In statement form, the well-defined descriptions of the members of a set are written and enclosed within curly brackets.</p>
+    <p><b>Example:</b> The set of even numbers less than 15.</p>
+
+    <h3>Roster Form</h3>
+    <p>In roster form, all the elements of a set are listed.</p>
+    <p><b>Natural Numbers less than 5:</b><br>{1, 2, 3, 4}</p>
+
+    <h3>Set Builder Form</h3>
+    <p>The general form is: <b>A = { x : property }</b></p>
+    <p>Example: A = {2, 4, 6, 8}</p>
+    <p>Given set in set-builder form:<br>A = {x : x = 2n, n ∈ N and 1 ≤ n ≤ 4}</p>
+
+    <h2>Union of Sets</h2>
+    <img src="u.png" style="height:400px;">
+    <p>If set A and set B are two sets, then A union B is the set that contains all the elements of set A and set B. It is denoted as A ∪ B.</p>
+    <div class="highlight-box">A = {1,2,3} &nbsp;|&nbsp; B = {4,5,6} &nbsp;|&nbsp; A ∪ B = {1,2,3,4,5,6}</div>
+
+    <h2>Intersection of Sets</h2>
+    <img src="i.png" style="height:400px;">
+    <p>If set A and set B are two sets, then A intersection B is the set that contains only the common elements between set A and set B. It is denoted as A ∩ B.</p>
+    <div class="highlight-box">A = {1,2,3} &nbsp;|&nbsp; B = {4,5,6} &nbsp;|&nbsp; A ∩ B = { } or Ø</div>
+    <p>Since A and B do not have any elements in common, their intersection is the null set.</p>
+
+    <h2>Complement of Sets</h2>
+    <img src="c.png" style="height:400px;">
+    <p>The complement of any set, say P, is the set of all elements in the universal set that are not in set P. It is denoted by P'.</p>
+
+    <h2>Disjoint and Overlapping Sets</h2>
+    <img src="d.png" style="height:400px;">
+    <p><b>Disjoint Sets Formula:</b> Disjoint sets have no common elements. Therefore, the number of elements in their union is the sum of the elements in each set.</p>
+    <div class="highlight-box">n(A ∪ B) = n(A) + n(B)</div>
+    <p><b>Overlapping Sets Formula:</b> Overlapping sets have some common elements. To avoid counting the common elements twice, subtract the intersection from the sum.</p>
+    <div class="highlight-box">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</div>
+  </div>
+</section>
+
+<!-- FORMULA -->
+<section id="Formula">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Formula</p>
+  <div class="content">
+    <h2>Two and Three Venn Diagram</h2>
+    <img src="ve.png" style="height:400px;">
+
+    <div class="formula-flex">
+      <div>
+        <h2>Important Formulae Of two venn diagram</h2>
+        <ul>
+          <li>n(A∪B) = n(A) + n(B) − n(A∩B)</li>
+          <li>n(A∩B) = n(A) + n(B) − n(A∪B)</li>
+          <li>n(A−B) = n(A) − n(A∩B)</li>
+          <li>n(B−A) = n(B) − n(A∩B)</li>
+          <li>n(A) = n(A−B) + n(A∩B)</li>
+          <li>n(B) = n(B−A) + n(A∩B)</li>
+          <li>n(A−B) + n(A∩B) = n(A)</li>
+          <li>n(B−A) + n(A∩B) = n(B)</li>
+          <li>n(A−B) + n(B−A) + n(A∩B) = n(A∪B)</li>
+          <li>n(A−B) = n(A∪B) − n(B)</li>
+          <li>n(B−A) = n(A∪B) − n(A)</li>
+          <li>n(A−B) + n(B) = n(A∪B)</li>
+          <li>n(B−A) + n(A) = n(A∪B)</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Important Formulae Of three venn diagram</h2>
+        <ul>
+          <li>n(A∪B∪C) = n(A) + n(B) + n(C) − n(A∩B) − n(B∩C) − n(C∩A) + n(A∩B∩C)</li>
+          <li>n(only A) = n(A) − n(A∩B) − n(A∩C) + n(A∩B∩C)</li>
+          <li>n(only B) = n(B) − n(A∩B) − n(B∩C) + n(A∩B∩C)</li>
+          <li>n(only C) = n(C) − n(A∩C) − n(B∩C) + n(A∩B∩C)</li>
+          <li>n((A∩B)−C) = n(A∩B) − n(A∩B∩C)</li>
+          <li>n((B∩C)−A) = n(B∩C) − n(A∩B∩C)</li>
+          <li>n((C∩A)−B) = n(C∩A) − n(A∩B∩C)</li>
+          <li>n(A∩B∩C) = Common to all three sets</li>
+          <li>n(none) = n(U) − n(A∪B∪C)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACKNOWLEDGEMENT -->
+<section id="remote">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Acknowledgement</p>
+  <div class="content">
+    <h1>Acknowledgement</h1>
+    <img src="f.png" style="height:250px;">
+    <p>We would like to express our sincere gratitude to our Mathematics teacher, <strong>Mr. Ananda Sapkota</strong>, for giving us the opportunity to work on this project on Sets and Survey. His continuous guidance, clear explanations, and valuable feedback greatly helped us understand the concepts and complete this project successfully.</p>
+    <p>We are truly thankful for his constant support, encouragement, and patience throughout the process. His teaching methods and motivation made it easier for us to understand mathematical concepts and apply them in a practical way, which was very helpful in completing our work effectively.</p>
+    <p>We also sincerely acknowledge the school administration of <strong>Fluorescent Secondary School</strong> for providing us with the necessary resources and a supportive learning environment to conduct our project.</p>
+  </div>
+</section>
+
+<!-- THANKSGIVING -->
+<section id="protocols">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Thanksgiving</p>
+  <div class="content">
+    <h1>Thanksgiving</h1>
+    <img src="an.png" style="height:300px;">
+    <p>First of all, we would like to thank our Mathematics Teacher <strong>Mr. Anandi Sapkota</strong> for his valuable help, continuous motivation, and unwavering support throughout this project. With his dedication towards teaching, clear explanations, and constructive criticism, he made it easier for us to understand the concepts and complete this project successfully. Our heartfelt thanks go to him for everything.</p>
+    <p>We would also like to thank our parents for their continuous encouragement and motivation in completing this project successfully. We appreciate their sacrifices, dedication, and the supportive environment they provide at home, which helped us stay focused and determined throughout the project.</p>
+    <p>Moreover, we would like to express our sincere gratitude to our class fellows for their exemplary teamwork and dedication throughout this project. They played an important role in making this project a success through their active cooperation, valuable suggestions, and constant support.</p>
+  </div>
+</section>
+
+<!-- DATA ANALYSIS -->
+<section id="social">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Data Analysis</p>
+  <div class="content">
+    <h1>Grade 8 Media Preference Survey</h1>
+    <p>Our group conducted a survey across four sections of Grade 8—namely Class 8A, 8B, 8C, and 8D—covering a total sample size of <strong>152 students</strong> to explore their interest in Anime (A), Movies (M), and Series (S).</p>
+
+    <!-- Stats summary cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">152</div>
+        <div class="stat-label">Total Surveyed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">76</div>
+        <div class="stat-label">Like Movies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">73</div>
+        <div class="stat-label">Like Anime</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">21</div>
+        <div class="stat-label">Like All Three</div>
+      </div>
+    </div>
+
+    <h2>Venn Diagram Data Table</h2>
+    <table class="survey-table">
+      <thead>
+        <tr>
+          <th>Category</th><th>Class 8A</th><th>Class 8B</th><th>Class 8C</th><th>Class 8D</th><th>Combined Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-highlight"><td>Total Surveyed (n(U))</td><td>38</td><td>37</td><td>39</td><td>38</td><td>152</td></tr>
+        <tr><td>Anime Only</td><td>6</td><td>5</td><td>6</td><td>5</td><td>22</td></tr>
+        <tr><td>Movies Only</td><td>5</td><td>4</td><td>5</td><td>6</td><td>20</td></tr>
+        <tr><td>Series Only</td><td>4</td><td>5</td><td>4</td><td>4</td><td>17</td></tr>
+        <tr><td>Anime &amp; Movies Only (A ∩ M)</td><td>5</td><td>4</td><td>4</td><td>5</td><td>18</td></tr>
+        <tr><td>Anime &amp; Series Only (A ∩ S)</td><td>3</td><td>3</td><td>3</td><td>3</td><td>12</td></tr>
+        <tr><td>Movies &amp; Series Only (M ∩ S)</td><td>4</td><td>4</td><td>5</td><td>4</td><td>17</td></tr>
+        <tr class="row-highlight"><td>All Three (A ∩ M ∩ S)</td><td>5</td><td>5</td><td>6</td><td>5</td><td>21</td></tr>
+        <tr><td>None (A U M U S)'</td><td>6</td><td>7</td><td>6</td><td>6</td><td>25</td></tr>
+      </tbody>
+    </table>
+
+
+    <h2>Representing information in Venn diagram</h2>
+    <img src="v.png" style="height:300px;">
+
+    <h2>Survey Analysis</h2>
+    <p>We analyzed the data from the survey. Our group survey and analysis looked at what 152 eighth-grade students watch. We collected data from four classes (8A, 8B, 8C, and 8D) about Anime, Movies, and Series.</p>
+    <p>We found out that Movies are the most popular choice with 76 viewers, and Anime is a close second with 73 viewers. Series came in last with 67 viewers. While many students only like one specific type, a big group of 21 students love to watch all three. On the other hand, there are 25 students who do not watch any of them at all.</p>
+    <p>Overall, our study shows that most eighth graders love watching videos in their free time, especially movies and anime, and many enjoy switching between different types of shows.</p>
+
+    <div class="note-box">
+      
+      The overlap regions (students who like more than one type) total <strong>47 students</strong> (18 + 12 + 17 − 21), showing that nearly <em>31%</em> of the class enjoys multiple media formats.
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section id="zoom">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Sources</p>
+  <div class="content">
+    <h2>Sources of Survey</h2>
+    <p>The main source of our data was the students of eighth-grade at Fluorescent Secondary School. We interviewed a total of 152 students across four different classrooms: Class 8A, 8B, 8C, and 8D. These classmates acted as our direct, first-hand sources by sharing their real personal preferences regarding anime, movies, and series.</p>
+    <p>For our data collection tools, we relied on traditional stationery items including pens, pencils, and a notebook. Using paper and pencils allowed us to easily move from room to room and quickly write down responses without needing technology. This notebook served as our physical master file where we created tally marks and drew our first rough Venn diagrams.</p>
+    <p>The physical sources of our research were the classrooms themselves within the school building. By physically visiting each section during school hours, we were able to survey the students in their natural daily environment. This face-to-face field method helped us get answers from almost everyone in the class quickly and handle any questions on the spot.</p>
+  </div>
+</section>
+
+<!-- GRAPHICAL -->
+<section id="Sources">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Graphical Presentation</p>
+  <div class="content">
+    <h2>Bar Graph</h2>
+    <p>The bar graph of class 8 students liking anime, movies and series:</p>
+    <img src="bar.png" style="height:400px;">
+    <h2>Pie Chart</h2>
+    <p>The pie chart of the survey is given below:</p>
+    <img src="p.png" style="height:400px;">
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="Conclusion">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Conclusion</p>
+  <div class="content">
+    <h2>Main Conclusion</h2>
+    <p>In conclusion, our survey shows that eighth graders at Fluorescent Secondary School love watching videos in their free time. Movies and anime are the most popular choices among the students. We also found out that many classmates do not just watch one thing; they like to switch between different types of shows, and twenty-one students love watching all three.</p>
+    <p>This project was also a great way for us to learn about math sets in real life. By doing a practical survey and sorting the names ourselves, we now clearly understand how mathematical ideas like unions, intersections, and universal sets work outside the textbook. Overall, this project showed us what our friends like to watch while proving that math is a very useful tool for understanding the world around us.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">🎬</div>
+        <div class="stat-label">Movies — Most Popular (76)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">🌸</div>
+        <div class="stat-label">Anime — Close Second (73)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">📺</div>
+        <div class="stat-label">Series — Third (67)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">25</div>
+        <div class="stat-label">Like None of the Three</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:28px;">
+      <div class="note-label">💡 Key Learning</div>
+      Mathematics is everywhere — even in what your classmates watch on their phones!
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <p class="pageTitle">Members</p>
+  <div class="members-container">
+    <div class="member-box" style="background:linear-gradient(135deg,#ff6b6b,#ee4444);">
+      <img src="Sanjok.png">
+      <h3>Sanjok Silwal (C)</h3>
+    </div>
+    <div class="member-box" style="background:linear-gradient(135deg,#4ecdc4,#26a69a);">
+      <img src="kalpu.png">
+      <h3>Kalpit Pandey</h3>
+    </div>
+    <div class="member-box" style="background:linear-gradient(135deg,#ffa502,#e67e00);">
+      <img src="Anka.png">
+      <h3>Ankit Raj Pathak</h3>
+    </div>
+    <div class="member-box" style="background:linear-gradient(135deg,#1F51FF,#1565c0);">
+      <img src="abl.png">
+      <h3>Abhilekh Adhikari</h3>
+    </div>
+    <div class="member-box" style="background:linear-gradient(135deg,#2ed573,#00b04f);">
+      <img src="Pabu.png">
+      <h3>Pabit Regmi</h3>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
